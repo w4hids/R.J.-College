@@ -155,7 +155,7 @@ function updateMaterialsList() {
     const materialsList = document.getElementById('materials-list');
     if (!materialsList) return;
 
-    materialsList.innerHTML = materials.map(material => `
+    materialsList.innerHTML = materials.map(material => ` 
         <div class="list-item">
             <h3>${material.title}</h3>
             <p>${material.content}</p>
@@ -208,7 +208,7 @@ function updateSubmissionsList() {
     submissionsList.innerHTML = submissions.map(submission => {
         const student = users.find(u => u.id === submission.studentId);
         const assignment = assignments.find(a => a.id === submission.assignmentId);
-        
+
         return `
             <div class="list-item">
                 <h3>${assignment.title}</h3>
@@ -216,7 +216,7 @@ function updateSubmissionsList() {
                 <p>Submission: ${submission.content}</p>
                 <div class="score-section">
                     ${submission.score !== null 
-                        ? `<p>Score: ${submission.score}</p>`
+                        ? `<p>Score: ${submission.score}</p>` 
                         : `
                             <input type="number" min="0" max="100" id="score-${submission.id}" placeholder="Enter score">
                             <button onclick="gradeSubmission(${submission.id})" class="btn-primary">
@@ -244,6 +244,28 @@ function gradeSubmission(submissionId) {
     submission.score = score;
     alert('Submission graded successfully!');
     updateSubmissionsList();
+    updateStudentScores();
+}
+
+// Update Student Scores List (Student View)
+function updateStudentScores() {
+    const scoresList = document.getElementById('scores-list');
+    if (!scoresList) return;
+
+    // Filter submissions for the current student
+    const studentSubmissions = submissions.filter(submission => submission.studentId === currentUser.id);
+
+    // Display each submission with its score
+    scoresList.innerHTML = studentSubmissions.map(submission => {
+        const assignment = assignments.find(a => a.id === submission.assignmentId);
+        return `
+            <div class="list-item">
+                <h3>${assignment.title}</h3>
+                <p>Submitted: ${submission.content}</p>
+                <p>Score: ${submission.score !== null ? submission.score : 'Not graded yet'}</p>
+            </div>
+        `;
+    }).join('');
 }
 
 // Show Dashboard
@@ -261,6 +283,7 @@ function showDashboard() {
         studentDashboard.classList.remove('hidden');
         updateMaterialsList();
         updateAssignmentsList();
+        updateStudentScores();
     }
 }
 
