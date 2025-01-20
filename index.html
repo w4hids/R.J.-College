@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R J College LMS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login/Register Section -->
+    <div id="auth-section" class="auth-container">
+        <div class="auth-box">
+            <h1>R J College</h1>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="register">Register as Teacher</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-role">Role</label>
+                    <select id="login-role" required>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+
+            <!-- Teacher Registration Form -->
+            <form id="register-form" class="auth-form hidden">
+                <div class="form-group">
+                    <label for="reg-name">Full Name</label>
+                    <input type="text" id="reg-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" required>
+                </div>
+                <button type="submit" class="btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard-section" class="dashboard hidden">
+        <header>
+            <div class="header-content">
+                <h1>R J College</h1>
+                <div class="user-info">
+                    <span id="user-name"></span>
+                    <button id="logout-btn" class="btn-secondary">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Teacher Dashboard -->
+        <div id="teacher-dashboard" class="dashboard-content hidden">
+            <div class="dashboard-grid">
+                <section class="dashboard-card">
+                    <h2>Add Student</h2>
+                    <form id="add-student-form">
+                        <div class="form-group">
+                            <label for="student-name">Student Name</label>
+                            <input type="text" id="student-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-email">Student Email</label>
+                            <input type="email" id="student-email" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Add Student</button>
+                    </form>
+                </section>
+
+                <section class="dashboard-card">
+                    <h2>Post Material</h2>
+                    <form id="post-material-form">
+                        <div class="form-group">
+                            <label for="material-title">Title</label>
+                            <input type="text" id="material-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="material-content">Content</label>
+                            <textarea id="material-content" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Post Material</button>
+                    </form>
+                </section>
+
+                <section class="dashboard-card">
+                    <h2>Create Assignment</h2>
+                    <form id="create-assignment-form">
+                        <div class="form-group">
+                            <label for="assignment-title">Title</label>
+                            <input type="text" id="assignment-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="assignment-description">Description</label>
+                            <textarea id="assignment-description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="assignment-due">Due Date</label>
+                            <input type="date" id="assignment-due" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Create Assignment</button>
+                    </form>
+                </section>
+            </div>
+
+            <section class="submissions-section">
+                <h2>Assignment Submissions</h2>
+                <div id="submissions-list" class="list-container">
+                    <!-- Submissions will be populated here -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Student Dashboard -->
+        <div id="student-dashboard" class="dashboard-content hidden">
+            <div class="dashboard-grid">
+                <section class="dashboard-card">
+                    <h2>Learning Materials</h2>
+                    <div id="materials-list" class="list-container">
+                        <!-- Materials will be populated here -->
+                    </div>
+                </section>
+
+                <section class="dashboard-card">
+                    <h2>Assignments</h2>
+                    <div id="assignments-list" class="list-container">
+                        <!-- Assignments will be populated here -->
+                    </div>
+                </section>
+
+                <section class="dashboard-card">
+                    <h2>My Scores</h2>
+                    <div id="scores-list" class="list-container">
+                        <!-- Scores will be populated here -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
